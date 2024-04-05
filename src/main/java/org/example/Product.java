@@ -34,6 +34,11 @@ public class Product {
             this.unitCost = unitCost.add(percentToAdd);
         }
         unitCost = unitCost.setScale(2, RoundingMode.HALF_UP);
+
+        BigDecimal finalUnitPrice = applyPromotion(unitCost);
+
+        // Update unit cost
+        unitCost = finalUnitPrice.setScale(2, RoundingMode.HALF_UP);
     }
 
     public BigDecimal applyPromotion(BigDecimal standardPrice){
@@ -46,10 +51,18 @@ public class Product {
                 return standardPrice.subtract(discount);
             case BUY_TWO_GET_THIRD_FREE:
                 //TODO
+                // Calculate total cost considering free items
+//                int quantityOrdered = 3; // Total quantity required for promotion
+//                int paidQuantity = quantityOrdered - 1; // Calculate number of items to be paid (2 out of 3)
+//                BigDecimal totalCost = standardPrice.multiply(BigDecimal.valueOf(paidQuantity));
+                // Calculate final unit cost
+//                return totalCost.divide(BigDecimal.valueOf(quantityOrdered), 2, RoundingMode.HALF_UP);
+                return standardPrice;
+            default: throw new IllegalArgumentException("Invalid promotion: " + productPromotion);
         }
 
 
-        return BigDecimal.valueOf(0);
+        //return BigDecimal.valueOf(0);
     }
 
 

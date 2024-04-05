@@ -21,6 +21,9 @@ public class Client {
         this.discountForOrderAbove30K = discountForOrderAbove30K;
     }
 
+    public Client() {
+    }
+
     public int getId() {
         return id;
     }
