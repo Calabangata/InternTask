@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -10,22 +11,19 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        Company company = new Company();
 
+        Company company = new Company();
          //Create and add products
         company.fillCompanyWithData();
 
-
-
         Scanner scanner = new Scanner(System.in);
         String input = "";
-
         while(true) {
             System.out.println("Enter order details: ");
             input = scanner.nextLine();
-
             if(!isValidInputFormat(input)){
                 System.out.println("Invalid input format. Please try again!");
+                scanner.nextLine();
                 continue;
             }
             break;
@@ -34,49 +32,9 @@ public class Main {
 
         Map<String, Map<Integer, Integer>> order = company.parseOrder(input);
 
-        int productId = 0;
-        int quantity = 0;
-        BigDecimal orderTotal = BigDecimal.valueOf(0);
-        Client tmpClient = new Client();
-
-         //Display parsed order details
-        for (Map.Entry<String, Map<Integer, Integer>> entry : order.entrySet()) {
-            String clientId = entry.getKey();
-
-            //int intClientFromString = Integer.valueOf(clientId);
+        company.calculateClientOrder(company, order);
 
 
-            for(Client client : company.getClients()){
-                if(client.getId() == Integer.parseInt(clientId)){
-                    System.out.println("Client: " + client.getName());
-                    tmpClient = client;
-                }
-            }
-            System.out.println(tmpClient);
-
-            Map<Integer, Integer> orderDetails = entry.getValue();
-
-            System.out.println("Order Details: ");
-            for (Map.Entry<Integer, Integer> item : orderDetails.entrySet()) {
-                productId = item.getKey();
-                quantity = item.getValue();
-                //System.out.println("Product ID: " + productId + ", Quantity: " + quantity);
-
-                    for (Product product : company.getProducts()) {
-                        if (product.getId() == productId) {
-                            System.out.println("Ordered product: " + product.getName() + " Quantity: " + quantity);
-                            System.out.println();
-                            orderTotal = product.getUnitCost().multiply(BigDecimal.valueOf(quantity));
-                            System.out.println("Total cost for product before discounts" + product.getName() + ": " + orderTotal);
-
-                            if(orderTotal.doubleValue() > 30000.00){
-                                //TODO
-                            }
-
-                        }
-                    }
-            }
-        }
 
     }
 

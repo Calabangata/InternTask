@@ -27,6 +27,7 @@ public class Product {
     }
 
     public void calculateStandardUnitPrice(){
+
         if(!isMarginPercentage) {
             this.unitCost = unitCost.add(margin);
         } else {
@@ -50,13 +51,8 @@ public class Product {
                 BigDecimal discount = standardPrice.multiply(BigDecimal.valueOf(0.3));
                 return standardPrice.subtract(discount);
             case BUY_TWO_GET_THIRD_FREE:
-                //TODO
-                // Calculate total cost considering free items
-//                int quantityOrdered = 3; // Total quantity required for promotion
-//                int paidQuantity = quantityOrdered - 1; // Calculate number of items to be paid (2 out of 3)
-//                BigDecimal totalCost = standardPrice.multiply(BigDecimal.valueOf(paidQuantity));
-                // Calculate final unit cost
-//                return totalCost.divide(BigDecimal.valueOf(quantityOrdered), 2, RoundingMode.HALF_UP);
+                //This would not be implemented here
+
                 return standardPrice;
             default: throw new IllegalArgumentException("Invalid promotion: " + productPromotion);
         }
