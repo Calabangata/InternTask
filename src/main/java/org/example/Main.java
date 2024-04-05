@@ -14,10 +14,12 @@ public class Main {
 
          //Create and add products
 
-        Product product1 = new Product(1, "Danish Muffin", BigDecimal.valueOf(0.52), BigDecimal.valueOf(0.80), true, "none");
-        Product product2 = new Product(2, "Granny’s Cup Cake", BigDecimal.valueOf(0.38), BigDecimal.valueOf(1.20), true, "30% off");
-        Product product3 = new Product(3, "Frenchy’s Croissant", BigDecimal.valueOf(0.41), BigDecimal.valueOf(0.90), false, "none");
-        Product product4 = new Product(4, "Crispy chips", BigDecimal.valueOf(0.60), BigDecimal.valueOf(1.00), false, "Buy 2, get 3rd free");
+        Product product1 = new Product(1, "Danish Muffin", BigDecimal.valueOf(0.52), BigDecimal.valueOf(0.80), true, ProductPromotion.NONE);
+        Product product2 = new Product(2, "Granny’s Cup Cake", BigDecimal.valueOf(0.38), BigDecimal.valueOf(1.20), true, ProductPromotion.THIRTY_PERCENT_OFF);
+        Product product3 = new Product(3, "Frenchy’s Croissant", BigDecimal.valueOf(0.41), BigDecimal.valueOf(0.90), false, ProductPromotion.NONE);
+        Product product4 = new Product(4, "Crispy chips", BigDecimal.valueOf(0.60), BigDecimal.valueOf(1.00), false, ProductPromotion.BUY_TWO_GET_THIRD_FREE);
+
+        System.out.println("Price before margin and adding: " + product1.getUnitCost());
 
         company.addProduct(product1);
         company.addProduct(product2);
@@ -36,6 +38,9 @@ public class Main {
         company.addClient(client4);
         company.addClient(client5);
 
+
+        //product1.calculateStandardUnitPrice();
+        System.out.println("Price after margin: " + product1.getUnitCost());
 
 //        Scanner scanner = new Scanner(System.in);
 //
@@ -68,45 +73,7 @@ public class Main {
 //                System.out.println("Product ID: " + productId + ", Quantity: " + quantity);
 //            }
 //        }
-        System.out.println("Price before margin: " + product1.getUnitCost());
-        product1.calculateStandardUnitPrice();
-        System.out.println("Price after margin: " + product1.getUnitCost());
-
-
 
         //End of main method
     }
-
-    // Method to parse the input string and extract order details
-//    public static Map<String, Map<Integer, Integer>> parseOrder(String input) {
-//        Map<String, Map<Integer, Integer>> orderDetails = new HashMap<>();
-//
-//        // Split input string by comma to separate elements
-//        String[] elements = input.split(",");
-//        // Get client ID from the first element
-//        String clientId = elements[0];
-//        // Create map to store order details for the client
-//        Map<Integer, Integer> clientOrder = new HashMap<>();
-//
-//        // Iterate over elements starting from index 1
-//        for (int i = 1; i < elements.length; i++) {
-//            // Split element by equal sign to separate product ID from quantity
-//            String[] parts = elements[i].split("=");
-//            if (parts.length == 2) {
-//                try {
-//                    int productId = Integer.parseInt(parts[0]);
-//                    int quantity = Integer.parseInt(parts[1]);
-//                    clientOrder.put(productId, quantity);
-//                } catch (NumberFormatException e) {
-//                    System.out.println("Invalid format for product ID or quantity: " + elements[i]);
-//                }
-//            } else {
-//                System.out.println("Invalid format for order element: " + elements[i]);
-//            }
-//        }
-//        // Add client ID and order details to the map
-//        orderDetails.put(clientId, clientOrder);
-//
-//        return orderDetails;
-//    }
 }

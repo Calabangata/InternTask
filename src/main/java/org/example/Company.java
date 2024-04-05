@@ -41,6 +41,7 @@ public class Company {
     public void addProduct(Product product){
         if(!products.contains(product)){
             products.add(product);
+            product.calculateStandardUnitPrice();
         }
 
     }

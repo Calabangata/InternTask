@@ -15,9 +15,9 @@ public class Product {
 
     private Boolean isMarginPercentage;
 
-    private String productPromotion;
+    private ProductPromotion productPromotion;
 
-    public Product(int id, String name, BigDecimal unitCost, BigDecimal margin, Boolean isMarginPercentage, String productPromotion) {
+    public Product(int id, String name, BigDecimal unitCost, BigDecimal margin, Boolean isMarginPercentage, ProductPromotion productPromotion) {
         this.id = id;
         this.name = name;
         this.unitCost = unitCost;
@@ -26,16 +26,30 @@ public class Product {
         this.productPromotion = productPromotion;
     }
 
-    public BigDecimal calculateStandardUnitPrice(){
-        if(isMarginPercentage == false) {
+    public void calculateStandardUnitPrice(){
+        if(!isMarginPercentage) {
             this.unitCost = unitCost.add(margin);
         } else {
             BigDecimal percentToAdd = this.getUnitCost().multiply(BigDecimal.valueOf(margin.doubleValue()));
-
             this.unitCost = unitCost.add(percentToAdd);
         }
         unitCost = unitCost.setScale(2, RoundingMode.HALF_UP);
-        return unitCost;
+    }
+
+    public BigDecimal applyPromotion(BigDecimal standardPrice){
+
+        switch (productPromotion){
+            case NONE:
+                return standardPrice;
+            case THIRTY_PERCENT_OFF:
+                BigDecimal discount = standardPrice.multiply(BigDecimal.valueOf(0.3));
+                return standardPrice.subtract(discount);
+            case BUY_TWO_GET_THIRD_FREE:
+                //TODO
+        }
+
+
+        return BigDecimal.valueOf(0);
     }
 
 
@@ -80,11 +94,11 @@ public class Product {
         isMarginPercentage = marginPercentage;
     }
 
-    public String getProductPromotion() {
+    public ProductPromotion getProductPromotion() {
         return productPromotion;
     }
 
-    public void setProductPromotion(String productPromotion) {
+    public void setProductPromotion(ProductPromotion productPromotion) {
         this.productPromotion = productPromotion;
     }
 
