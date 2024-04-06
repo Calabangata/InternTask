@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Company {
 
-    private final String name = "EveryDay Snacks";
+    private final String name = "Everyday Snacks";
 
     private List<Product> products;
 
@@ -45,7 +45,6 @@ public class Company {
             products.add(product);
             product.calculateStandardUnitPrice();
         }
-
     }
 
     public void addClient(Client client){
@@ -89,11 +88,12 @@ public class Company {
     public Map<String, Map<Integer, Integer>> parseOrder(String input) {
         Map<String, Map<Integer, Integer>> orderDetails = new HashMap<>();
 
-        // Split input string by comma to separate elements
+        // Splitting input string by comma to separate elements
         String[] elements = input.split(",");
-        // Get client ID from the first element
+        // Getting client ID from the first element
         String clientId = elements[0];
-        // Create map to store order details for the client
+        // Using 2 maps. The first map's key is the client id, the value is another map, whose key
+        // represents the product id, and the value is the quantity ordered
         Map<Integer, Integer> clientOrder = new HashMap<>();
 
         // Iterate over elements starting from index 1
@@ -228,5 +228,41 @@ public class Company {
             System.out.println("Additional Volume Discount at: " + tmpClient.getDiscountForOrderAbove10K().multiply(BigDecimal.valueOf(100)) + "%\n");
         }
         return orderTotal;
+    }
+
+    public boolean isValidInputFormat(String input) {
+        String[] parts = input.split(",");
+        if (parts.length < 2) {
+            return false; // Input must have at least one product
+        }
+        try{
+            int clientId = Integer.parseInt(parts[0]);
+            if(clientId <= 0 || clientId > this.getClients().size()){
+                //Client must not be larger than the available clients
+                //assuming that the id's start from 1 and after new client is
+                //added, the id increments
+                return false;
+            }
+        } catch (NumberFormatException e){
+            return false;
+        }
+        for (int i = 1; i < parts.length; i++) {
+            String[] productInfo = parts[i].split("=");
+            if (productInfo.length != 2) {
+                return false; // Each product info must have a product ID and quantity
+            }
+            try {
+                int productId = Integer.parseInt(productInfo[0]);
+                int quantity = Integer.parseInt(productInfo[1]);
+                if (productId <= 0 || quantity <= 0 || productId > products.size()) {
+                    return false; // Product ID and quantity must be positive
+                    // productId can not be larger than the available products
+                    //assuming that product id's go from 1,2,3...and so on
+                }
+            } catch (NumberFormatException e) {
+                return false; // Unable to parse product ID or quantity as integers
+            }
+        }
+        return true;
     }
 }

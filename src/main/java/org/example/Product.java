@@ -38,13 +38,8 @@ public class Product {
             this.unitCost = unitCost.add(percentToAdd);
         }
         unitCost = unitCost.setScale(2, RoundingMode.HALF_UP);
-
-        //BigDecimal finalUnitPrice = applyPromotion(unitCost);
         applyPromotion(unitCost);
         promotionalPrice = promotionalPrice.setScale(5, RoundingMode.HALF_UP);
-
-        // Update unit cost
-        //promotionalPrice = finalUnitPrice.setScale(5, RoundingMode.HALF_UP);
     }
 
     public void applyPromotion(BigDecimal standardPrice){
@@ -58,13 +53,9 @@ public class Product {
                 return;
             case BUY_TWO_GET_THIRD_FREE:
                 //This would not be implemented here
-
                 return;
             default: throw new IllegalArgumentException("Invalid promotion: " + productPromotion);
         }
-
-
-        //return BigDecimal.valueOf(0);
     }
 
     public BigDecimal getPromotionalPrice() {
@@ -128,10 +119,11 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + unitCost +
+                ", unitCost=" + unitCost +
+                ", promotionalPrice=" + promotionalPrice +
                 ", margin=" + margin +
                 ", isMarginPercentage=" + isMarginPercentage +
-                ", productPromotion='" + productPromotion + '\'' +
+                ", productPromotion=" + productPromotion +
                 '}';
     }
 }
