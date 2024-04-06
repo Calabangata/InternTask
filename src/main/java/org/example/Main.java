@@ -1,5 +1,7 @@
 package org.example;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
@@ -15,19 +17,40 @@ public class Main {
         Company company = new Company();
          //Create and add products
         company.fillCompanyWithData();
-
-        Scanner scanner = new Scanner(System.in);
         String input = "";
-        while(true) {
-            System.out.println("Enter order details: ");
-            input = scanner.nextLine();
-            if(!isValidInputFormat(input)){
-                System.out.println("Invalid input format. Please try again!");
-                scanner.nextLine();
-                continue;
+        //INPUT USING FILE
+        File file = new File("input.txt");
+        try{
+            Scanner scanner = new Scanner(file);
+
+            while(scanner.hasNextLine()){
+                input = scanner.nextLine();
+                if(!isValidInputFormat(input)){
+                    System.out.println("Invalid input format. Please check the file");
+                    continue;
+                }
             }
-            break;
+            scanner.close();
+
+        } catch (FileNotFoundException e){
+            System.out.println("File not found: " + e.getMessage());
         }
+        System.out.println("Input from file: " + input);
+
+
+        //INPUT USING CONSOLE
+//        Scanner scanner = new Scanner(System.in);
+//        String input = "";
+//        while(true) {
+//            System.out.println("Enter order details: ");
+//            input = scanner.nextLine();
+//            if(!isValidInputFormat(input)){
+//                System.out.println("Invalid input format. Please try again!");
+//                scanner.nextLine();
+//                continue;
+//            }
+//            break;
+//        }
 
 
         Map<String, Map<Integer, Integer>> order = company.parseOrder(input);
@@ -70,5 +93,6 @@ public class Main {
         }
         return true;
     }
-
+//1,1=100,2=200
+    //before client discounts 207.30; after basic client discounts 196.9350
 }

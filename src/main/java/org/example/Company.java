@@ -124,7 +124,7 @@ public class Company {
         int productId = 0;
         int quantity = 0;
         BigDecimal orderTotal = BigDecimal.valueOf(0);
-        BigDecimal productQuantityTotalPrice = BigDecimal.valueOf(0);
+        BigDecimal lineTotal = BigDecimal.valueOf(0);
         BigDecimal buyTwoGetThirdFreeDiscountPrice;
         BigDecimal basicClientDiscount;
         Client tmpClient = new Client();
@@ -141,7 +141,7 @@ public class Company {
 
             System.out.println("Client: " + tmpClient.getName());
             System.out.println();
-            System.out.println("Product\t\t\t| Quantity\t| Standard Unit Price\t| Promotional Unit Price\t| Line Total");
+            System.out.println("Product\t\t\t\t| Quantity | Standard Unit Price | Promotional Unit Price | Line Total");
             System.out.println("---------------------------------------------------------------------------------------------------");
 
             Map<Integer, Integer> orderDetails = entry.getValue();
@@ -155,9 +155,14 @@ public class Company {
                 for (Product product : company.getProducts()) {
                     if (product.getId() == productId) {
                         //System.out.println("Ordered product: " + product.getName() + " Quantity: " + quantity);
-                        System.out.println(product.getName() + "\t\t|");
-                        //System.out.println();
-                        productQuantityTotalPrice = product.getUnitCost().multiply(BigDecimal.valueOf(quantity));
+                        //System.out.println(product.getName() + "\t\t" + quantity + "\t\t\t" + product.getUnitCost() + "\t\t" + (product.getPromotionalPrice().doubleValue() > 0 ? product.getPromotionalPrice() : ""));
+
+                        if(product.getPromotionalPrice().doubleValue() == 0){
+                            lineTotal = product.getUnitCost().multiply(BigDecimal.valueOf(quantity));
+                        } else {
+                            lineTotal = product.getPromotionalPrice().multiply(BigDecimal.valueOf(quantity));
+                        }
+
                         //IMPLEMENT BUY 2 GET 3RD FREE LOGIC
                         if(product.getProductPromotion() == ProductPromotion.BUY_TWO_GET_THIRD_FREE){
                             while (i <= quantity){
@@ -167,46 +172,60 @@ public class Company {
                                 i++;
                             }
                             buyTwoGetThirdFreeDiscountPrice = product.getUnitCost().multiply(BigDecimal.valueOf(cnt));
-                            productQuantityTotalPrice = productQuantityTotalPrice.subtract(buyTwoGetThirdFreeDiscountPrice);
+                            lineTotal = lineTotal.subtract(buyTwoGetThirdFreeDiscountPrice);
                         }
 
+                        lineTotal = lineTotal.setScale(2, RoundingMode.HALF_UP);
 
-                        //System.out.println("Total cost for product before discounts: " + product.getName() + ": " + productQuantityTotalPrice);
+                        //System.out.println("Total cost for product before discounts: " + product.getName() + ": " + lineTotal);
 
-                        orderTotal = orderTotal.add(productQuantityTotalPrice);
+                        orderTotal = orderTotal.add(lineTotal);
                         //System.out.println("order cost before client discounts: " + orderTotal);
                         totalBeforeDiscounts = orderTotal;
-                        //ACCOUNT BASIC CLIENT DISCOUNT
-                        basicClientDiscount = orderTotal.multiply(tmpClient.getBasicDiscount());
-                        orderTotal = orderTotal.subtract(basicClientDiscount);
-                        //System.out.println("order cost after basic client discounts: " + orderTotal);
 
-                        //ACCOUNT VOLUME DISCOUNT
-                        orderTotal = company.setVolumeDiscountToOrder(orderTotal, tmpClient).setScale(2, RoundingMode.HALF_UP);
+
+
 
                         //System.out.println("order total after volume client discounts: " + orderTotal);
+
+                        System.out.printf("%-15s  %-10s  %-20s  %-25s %-30s\n", product.getName() + "\t\t", quantity,
+                                product.getUnitCost(), (product.getPromotionalPrice().doubleValue() > 0 ? product.getPromotionalPrice() : ""), lineTotal);
                     }
                 }
+
             }
+
+            //ACCOUNT BASIC CLIENT DISCOUNT
+            basicClientDiscount = orderTotal.multiply(tmpClient.getBasicDiscount());
+            orderTotal = orderTotal.subtract(basicClientDiscount);
+
+            System.out.println("\n\nTotal Before Client Discounts:\t\t " + totalBeforeDiscounts + "\n");
+
+            //ACCOUNT VOLUME DISCOUNT
+            orderTotal = company.setVolumeDiscountToOrder(orderTotal, tmpClient).setScale(2, RoundingMode.HALF_UP);
+
+            System.out.println("Order Total Amount: " + orderTotal);
+
+
+
         }
-
-//        System.out.println("Client: " + tmpClient.getName());
-//        System.out.println();
-//        System.out.println("Product\t\t| Quantity\t| Standard Unit Price\t| Promotional Unit Price\t| Line Total");
-//        System.out.println("---------------------------------------------------------------------------------------------------");
-
 
     }
 
     public BigDecimal setVolumeDiscountToOrder(BigDecimal orderTotal, Client tmpClient) {
-        if(orderTotal.doubleValue() > 30000.00){
+        if(orderTotal.doubleValue() <= 10000){
+            System.out.println("Additional Volume Discount at: 0%\n");
+
+        } else if(orderTotal.doubleValue() > 30000.00){
 
             BigDecimal volumeDiscount = orderTotal.multiply(tmpClient.getDiscountForOrderAbove30K());
             orderTotal = orderTotal.subtract(volumeDiscount).setScale(2, RoundingMode.HALF_UP);
+            System.out.println("Additional Volume Discount at: " + tmpClient.getDiscountForOrderAbove30K().multiply(BigDecimal.valueOf(100)).setScale(0, RoundingMode.HALF_UP) + "%\n");
 
         } else if(orderTotal.doubleValue() > 10000.00){
             BigDecimal volumeDiscount = orderTotal.multiply(tmpClient.getDiscountForOrderAbove10K());
             orderTotal = orderTotal.subtract(volumeDiscount).setScale(2, RoundingMode.HALF_UP);
+            System.out.println("Additional Volume Discount at: " + tmpClient.getDiscountForOrderAbove10K().multiply(BigDecimal.valueOf(100)) + "%\n");
         }
         return orderTotal;
     }

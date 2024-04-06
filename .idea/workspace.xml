@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36561a4a-1a52-4dcc-b7c6-cf101d19f37b" name="Changes" comment="Added input validation method&#10;//TODO - need to calculate client volume discounts and buy 2 get 3rd free logic">
+    <list default="true" id="36561a4a-1a52-4dcc-b7c6-cf101d19f37b" name="Changes" comment="implemented buy 2 get 3rd logic and reorganised the code">
+      <change afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Company.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
@@ -62,7 +63,8 @@
       <updated>1712220890520</updated>
       <workItem from="1712220892852" duration="23135000" />
       <workItem from="1712297690790" duration="13088000" />
-      <workItem from="1712330341311" duration="15451000" />
+      <workItem from="1712330341311" duration="17175000" />
+      <workItem from="1712384388589" duration="11455000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1712263025697</created>
@@ -85,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712322021277</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="implemented buy 2 get 3rd logic and reorganised the code">
+      <created>1712349639628</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712349639628</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +104,7 @@
     <MESSAGE value="Changes" />
     <MESSAGE value="Added product promotion enum and apply promotion method, which is not completed" />
     <MESSAGE value="Added input validation method&#10;//TODO - need to calculate client volume discounts and buy 2 get 3rd free logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added input validation method&#10;//TODO - need to calculate client volume discounts and buy 2 get 3rd free logic" />
+    <MESSAGE value="implemented buy 2 get 3rd logic and reorganised the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented buy 2 get 3rd logic and reorganised the code" />
   </component>
 </project>

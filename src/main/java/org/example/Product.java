@@ -11,6 +11,8 @@ public class Product {
 
     private BigDecimal unitCost;
 
+    private BigDecimal promotionalPrice;
+
     private BigDecimal margin;
 
     private Boolean isMarginPercentage;
@@ -24,6 +26,7 @@ public class Product {
         this.margin = margin;
         this.isMarginPercentage = isMarginPercentage;
         this.productPromotion = productPromotion;
+        this.promotionalPrice = BigDecimal.valueOf(0);
     }
 
     public void calculateStandardUnitPrice(){
@@ -36,24 +39,27 @@ public class Product {
         }
         unitCost = unitCost.setScale(2, RoundingMode.HALF_UP);
 
-        BigDecimal finalUnitPrice = applyPromotion(unitCost);
+        //BigDecimal finalUnitPrice = applyPromotion(unitCost);
+        applyPromotion(unitCost);
+        promotionalPrice = promotionalPrice.setScale(5, RoundingMode.HALF_UP);
 
         // Update unit cost
-        unitCost = finalUnitPrice.setScale(2, RoundingMode.HALF_UP);
+        //promotionalPrice = finalUnitPrice.setScale(5, RoundingMode.HALF_UP);
     }
 
-    public BigDecimal applyPromotion(BigDecimal standardPrice){
+    public void applyPromotion(BigDecimal standardPrice){
 
         switch (productPromotion){
             case NONE:
-                return standardPrice;
+                return;
             case THIRTY_PERCENT_OFF:
                 BigDecimal discount = standardPrice.multiply(BigDecimal.valueOf(0.3));
-                return standardPrice.subtract(discount);
+                promotionalPrice = standardPrice.subtract(discount);
+                return;
             case BUY_TWO_GET_THIRD_FREE:
                 //This would not be implemented here
 
-                return standardPrice;
+                return;
             default: throw new IllegalArgumentException("Invalid promotion: " + productPromotion);
         }
 
@@ -61,7 +67,13 @@ public class Product {
         //return BigDecimal.valueOf(0);
     }
 
+    public BigDecimal getPromotionalPrice() {
+        return promotionalPrice;
+    }
 
+    public void setPromotionalPrice(BigDecimal promotionalPrice) {
+        this.promotionalPrice = promotionalPrice;
+    }
 
     public int getId() {
         return id;
