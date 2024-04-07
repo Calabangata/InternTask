@@ -3,12 +3,14 @@ package org.example;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import static junit.framework.TestCase.*;
 
 
 public class CompanyTest {
-
+    //testing the validation of input
     @Test
     public void testInputFormat_ClientIdIsMissing(){
         Company company = new Company();
@@ -51,6 +53,31 @@ public class CompanyTest {
         Company company = new Company();
         company.fillCompanyWithData();//4 products are added
         assertFalse(company.isValidInputFormat("2,1=200,5=4000"));
+    }
+    //Testing the volume discount method
+    @Test
+    public void testIfVolumeDiscountAppliesForOrderBiggerThan30K(){
+        Company company = new Company();
+        Client client = new Client(1, "TestClient", BigDecimal.valueOf(0.02), BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.07));
+        BigDecimal actualOrderTotal = company.setVolumeDiscountToOrder(BigDecimal.valueOf(30001), client);
+        BigDecimal expectedOrderTotal = BigDecimal.valueOf(27900.93).setScale(2, RoundingMode.HALF_UP);
+        assertEquals(expectedOrderTotal, actualOrderTotal);
+    }
+    @Test
+    public void testIfVolumeDiscountAppliesForOrderBiggerThan10K(){
+        Company company = new Company();
+        Client client = new Client(1, "TestClient", BigDecimal.valueOf(0.02), BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.07));
+        BigDecimal actualOrderTotal = company.setVolumeDiscountToOrder(BigDecimal.valueOf(10001), client);
+        BigDecimal expectedOrderTotal = BigDecimal.valueOf(9500.95).setScale(2, RoundingMode.HALF_UP);
+        assertEquals(expectedOrderTotal, actualOrderTotal);
+    }
+    @Test
+    public void testIfOrderTotalIsTheSameForOrderIsNotMoreThan10K(){
+        Company company = new Company();
+        Client client = new Client(1, "TestClient", BigDecimal.valueOf(0.02), BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.07));
+        BigDecimal actualOrderTotal = company.setVolumeDiscountToOrder(BigDecimal.valueOf(10000), client);
+        BigDecimal expectedOrderTotal = BigDecimal.valueOf(10000).setScale(2, RoundingMode.HALF_UP);
+        assertEquals(expectedOrderTotal, actualOrderTotal);
     }
 
 }
