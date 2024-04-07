@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36561a4a-1a52-4dcc-b7c6-cf101d19f37b" name="Changes" comment="Added som unit tests and more validation to input">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/ProductTest.java" afterDir="false" />
+    <list default="true" id="36561a4a-1a52-4dcc-b7c6-cf101d19f37b" name="Changes" comment="Added more unit tests and more styling to the output">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CompanyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/CompanyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +56,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in EverydaySnacksOrderPricing">
     <configuration name="All in EverydaySnacksOrderPricing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EverydaySnacksOrderPricing" />
       <option name="PACKAGE_NAME" value="" />
@@ -76,6 +76,22 @@
       <option name="PACKAGE_NAME" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="org.example.CompanyTest" />
       <option name="METHOD_NAME" value="testIfOrderTotalIsTheSameForOrderIsNotMoreThan10K" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompanyTest.testIfTheClientOrderIsCalculatedCorrectly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EverydaySnacksOrderPricing" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.CompanyTest" />
+      <option name="METHOD_NAME" value="testIfTheClientOrderIsCalculatedCorrectly" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -113,29 +129,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductTest.testIfPriceForProductWithMarginPercentageIsCalculatedCorrectly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EverydaySnacksOrderPricing" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.ProductTest" />
-      <option name="METHOD_NAME" value="testIfPriceForProductWithMarginPercentageIsCalculatedCorrectly" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CompanyTest.testIfOrderTotalIsTheSameForOrderIsNotMoreThan10K" />
         <item itemvalue="JUnit.All in EverydaySnacksOrderPricing" />
+        <item itemvalue="JUnit.CompanyTest.testIfTheClientOrderIsCalculatedCorrectly" />
+        <item itemvalue="JUnit.CompanyTest.testIfOrderTotalIsTheSameForOrderIsNotMoreThan10K" />
         <item itemvalue="JUnit.CompanyTest.testIfVolumeDiscountAppliesForOrderBiggerThan10K" />
         <item itemvalue="JUnit.CompanyTest.testIfVolumeDiscountAppliesForOrderBiggerThan30K" />
-        <item itemvalue="JUnit.ProductTest.testIfPriceForProductWithMarginPercentageIsCalculatedCorrectly" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +152,7 @@
       <workItem from="1712330341311" duration="17175000" />
       <workItem from="1712384388589" duration="13399000" />
       <workItem from="1712424377287" duration="8764000" />
-      <workItem from="1712471418057" duration="8819000" />
+      <workItem from="1712471418057" duration="10811000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1712263025697</created>
@@ -196,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712435409426</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added more unit tests and more styling to the output">
+      <created>1712481571596</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712481571596</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +216,8 @@
     <MESSAGE value="implemented buy 2 get 3rd logic and reorganised the code" />
     <MESSAGE value="Implemented order output and reading input from file" />
     <MESSAGE value="Added som unit tests and more validation to input" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added som unit tests and more validation to input" />
+    <MESSAGE value="Added more unit tests and more styling to the output" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more unit tests and more styling to the output" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EverydaySnacksOrderPricing$All_in_EverydaySnacksOrderPricing.ic" NAME="All in EverydaySnacksOrderPricing Coverage Results" MODIFIED="1712474329446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -118,7 +118,7 @@ public class Company {
         return orderDetails;
     }
 
-    public void calculateClientOrder(Company company, Map<String, Map<Integer, Integer>> order) {
+    public BigDecimal calculateClientOrder(Company company, Map<String, Map<Integer, Integer>> order) {
         int i = 1;
         int cnt = 0;
         int productId = 0;
@@ -194,7 +194,7 @@ public class Company {
 
 
         }
-
+    return orderTotal;
     }
 
     public BigDecimal setVolumeDiscountToOrder(BigDecimal orderTotal, Client tmpClient) {

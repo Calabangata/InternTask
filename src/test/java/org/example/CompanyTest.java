@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Map;
 
 import static junit.framework.TestCase.*;
 
@@ -77,6 +78,15 @@ public class CompanyTest {
         Client client = new Client(1, "TestClient", BigDecimal.valueOf(0.02), BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.07));
         BigDecimal actualOrderTotal = company.setVolumeDiscountToOrder(BigDecimal.valueOf(10000), client);
         BigDecimal expectedOrderTotal = BigDecimal.valueOf(10000).setScale(2, RoundingMode.HALF_UP);
+        assertEquals(expectedOrderTotal, actualOrderTotal);
+    }
+    @Test
+    public void testIfTheClientOrderIsCalculatedCorrectly(){
+        Company company = new Company();
+        company.fillCompanyWithData();
+        Map<String, Map<Integer, Integer>> order = company.parseOrder("5,1=10000,2=500,4=20000"); //Order Total should be 28856.41
+        BigDecimal actualOrderTotal =  company.calculateClientOrder(company, order);
+        BigDecimal expectedOrderTotal = BigDecimal.valueOf(28856.41).setScale(2, RoundingMode.HALF_UP);
         assertEquals(expectedOrderTotal, actualOrderTotal);
     }
 

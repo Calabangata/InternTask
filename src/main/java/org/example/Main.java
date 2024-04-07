@@ -11,14 +11,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-
 
         Company company = new Company();
          //Create and add products
         company.fillCompanyWithData();
-
-
 
         //INPUT USING FILE
         String input = "";
@@ -30,7 +26,6 @@ public class Main {
                 input = scanner.nextLine();
                 if(!company.isValidInputFormat(input)){
                     System.out.println("Invalid input format. Please check the file");
-                    continue;
                 }
             }
             scanner.close();
@@ -46,7 +41,6 @@ public class Main {
 //            input = scanner.nextLine();
 //            if(!company.isValidInputFormat(input)){
 //                System.out.println("Invalid input format. Please try again!");
-//                scanner.nextLine();
 //                continue;
 //            }
 //            break;
