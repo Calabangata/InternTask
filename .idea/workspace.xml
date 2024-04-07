@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36561a4a-1a52-4dcc-b7c6-cf101d19f37b" name="Changes" comment="Added more unit tests and more styling to the output">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CompanyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/CompanyTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="36561a4a-1a52-4dcc-b7c6-cf101d19f37b" name="Changes" comment="Added more unit tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,7 +146,7 @@
       <workItem from="1712330341311" duration="17175000" />
       <workItem from="1712384388589" duration="13399000" />
       <workItem from="1712424377287" duration="8764000" />
-      <workItem from="1712471418057" duration="10811000" />
+      <workItem from="1712471418057" duration="11426000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1712263025697</created>
@@ -203,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712481571596</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added more unit tests">
+      <created>1712483328818</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712483328818</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,9 +218,10 @@
     <MESSAGE value="Implemented order output and reading input from file" />
     <MESSAGE value="Added som unit tests and more validation to input" />
     <MESSAGE value="Added more unit tests and more styling to the output" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more unit tests and more styling to the output" />
+    <MESSAGE value="Added more unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more unit tests" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EverydaySnacksOrderPricing$All_in_EverydaySnacksOrderPricing.ic" NAME="All in EverydaySnacksOrderPricing Coverage Results" MODIFIED="1712474329446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/EverydaySnacksOrderPricing$All_in_EverydaySnacksOrderPricing.ic" NAME="All in EverydaySnacksOrderPricing Coverage Results" MODIFIED="1712483266074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

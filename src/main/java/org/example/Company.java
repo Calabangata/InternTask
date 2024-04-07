@@ -172,7 +172,6 @@ public class Company {
 
                         lineTotal = lineTotal.setScale(2, RoundingMode.HALF_UP);
                         orderTotal = orderTotal.add(lineTotal);
-                        //System.out.println("order cost before client discounts: " + orderTotal);
                         totalBeforeDiscounts = orderTotal;
 
                         System.out.printf("%-15s  %-15s  %-15s  %-25s %-25s\n", product.getName() + "\t\t", quantity,
